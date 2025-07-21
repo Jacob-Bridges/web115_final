@@ -4,8 +4,8 @@
     let taskID= 1
 
 //Event listener to get the values from the user
-document.getElementById("add").addEventListener("click", function(e) {
-    e.preventDefault();
+document.getElementById("add").addEventListener("click", function(event) {
+    event.preventDefault();
     
     //This is the DIV element in the HTML
     let taskManager = document.getElementById("taskManager")
@@ -27,32 +27,16 @@ document.getElementById("add").addEventListener("click", function(e) {
         let month = date.getMonth() +1
         let day = date.getDate()
         
+        //taskManager is the HTML DIV. 
+        //using innerHTML means I can add extra html when the button is clicked.
+        //add the taskname, urgency and date
+        //add a new checkbox to check if the task is complete
+        //add a buttton to delete the task 
         taskManager.innerHTML += `${taskName} Priority: ${urgency} ${month}/${day}/${year} 
         <label><input type ="checkbox" id = "isCompleted" name = "isCompleted"> Complete</label>
         <button id = 'delete'>Delete</button> <br><br>`
         let isCompleted = document.getElementById("isCompleted")
         let deleteTask = document.getElementById("delete")
-
-        if (isimportant.checked){
-            taskManager.style.backgroundColor= "red"
-        }
-
-        
-        
-        isCompleted.addEventListener("click", function(){
-            if (isCompleted.checked){
-                taskManager.style.textDecoration = "line-through"
-            }
-        })
-
-        
-        deleteTask.addEventListener('click', ()=>{
-            taskManager.remove()
-        })
-        
-
-
-
         //create task object
         const task = {
             id: taskID++,
@@ -61,7 +45,27 @@ document.getElementById("add").addEventListener("click", function(e) {
             isCompleted: isCompleted.checked,
             date: `${month}/${day}/${year}`
         }
+        //push new task to taskList
         taskList.push(task)
+        //if important is checked, change background color of task
+        if (isimportant.checked){
+            taskManager.style.backgroundColor= "red"
+        }
+
+        //if complete is checked, strike-through task
+        isCompleted.addEventListener("click", function(){
+            if (isCompleted.checked){
+                taskManager.style.textDecoration = "line-through"
+            }
+        })
+
+        //if delete button is clicked, delete task
+        deleteTask.addEventListener('click', ()=>{
+            taskManager.remove()
+        })
+        
+  
+        
         //log task object in json
         console.log(JSON.stringify(task, null, 2))
         
