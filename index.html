@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jacob Bridges - Task Manager</title>
+        <link rel ="stylesheet" href ="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <!--Heading for application-->
+        <h1>Task Manager</h1>
+        <!--Task Form -->
+        <form id ="form">
+            <label  for="taskName">Task</label>
+            <input type="text" id="taskName" placeholder="Task Name" required>
+            <!--Urgency Level-->
+            <label for ="urgency">Urgency Level</label>
+            <select id ="urgency">
+                <option value ="High">High</option>
+                <option value ="Medium">Medium</option>
+                <option value ="Low">Low</option>
+            </select>
+            <!--Is it important?-->
+            <label>
+            <input type ="checkbox" id = "isImportant" name = "isImportant" value="important">
+            </label>
+            <label for = "important">Important</label>
+            <!--Add the task-->
+            <button id = "add">Add Task</button>
+            
+        </form>
+        <br>
+        <br>
+        <!--HTML will be added using script file after button is clicked-->
+        <div id="taskManager"></div>
+    </body>
+</html>
